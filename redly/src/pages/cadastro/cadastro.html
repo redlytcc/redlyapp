@@ -1,0 +1,56 @@
+<!--
+Generated template for the CadastroPage page.
+
+See http://ionicframework.com/docs/components/#navigation for more info on
+Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>cadastro</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content padding>
+    <ion-list>
+        <ion-item>
+            <ion-label floating>
+                Nome
+            </ion-label>
+            <ion-input required type="text" [(ngModel)]="data.nome"></ion-input>
+        </ion-item>
+
+        <ion-item>
+            <ion-label floating>
+                Email
+            </ion-label>
+            <ion-input required type="email" [(ngModel)]="data.email"></ion-input>
+        </ion-item>
+
+        <ion-item>
+            <ion-label floating>
+                Usuário
+            </ion-label>
+            <ion-input required type="text" [(ngModel)]="data.user"></ion-input>
+        </ion-item>
+
+        <ion-item>
+            <ion-label floating>
+                senha
+            </ion-label>
+            <ion-input required type="password" [(ngModel)]="data.senha"></ion-input>
+        </ion-item>
+
+        <ion-item>
+            <ion-label floating>
+                Confirme a senha
+            </ion-label>
+            <ion-input required type="password" [(ngModel)]="data.againsenha"></ion-input>
+        </ion-item>
+
+        <ion-item></ion-item>
+    </ion-list>
+    <button ion-button full icon-right color="danger" (click)="cad()" >cadastrar <ion-icon name="person-add"></ion-icon></button>
+    <ion-label><b>{{data.response}}</b></ion-label>
+</ion-content>

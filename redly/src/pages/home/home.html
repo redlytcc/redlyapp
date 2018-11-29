@@ -1,0 +1,42 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Login</ion-title>
+  </ion-navbar>
+
+</ion-header>
+<ion-content padding>
+    <div class="form">
+        
+        <ion-list>
+            <ion-item>
+                <ion-label floating>Username</ion-label>
+                <ion-input type="text" [(ngModel)]="data.username"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label floating>password</ion-label>
+                <ion-input type="password" [(ngModel)]="data.password"></ion-input>
+            </ion-item>
+            <ion-item>
+            </ion-item>
+
+        </ion-list>
+        <button ion-button full color="danger" icon-right (click)="sendgrid()" >Logar
+            <ion-icon name="log-in"></ion-icon>
+        </button>
+    </div>
+    <br>
+    <ion-label>
+        Ainda não tem uma conta <span (click)="cadastro()">cadastre-se</span>
+    </ion-label>
+    <ion-list>
+        <ion-item *ngFor="let post of posts">
+            {{post.name}}<br>
+            {{post.username}}<br>
+
+        </ion-item>
+    </ion-list>
+    <ion-label><b>{{data.response}}</b></ion-label>
+
+
+</ion-content>

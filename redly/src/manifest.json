@@ -1,0 +1,13 @@
+{
+  "name": "Redly inc",
+  "short_name": "Redly",
+  "start_url": "index.html",
+  "display": "standalone",
+  "icons": [{
+    "src": "assets/imgs/logo.png",
+    "sizes": "512x512",
+    "type": "image/png"
+  }],
+  "background_color": "b30726",
+  "theme_color": "#b30726"
+}
