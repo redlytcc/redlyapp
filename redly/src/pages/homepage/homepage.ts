@@ -30,15 +30,14 @@ export class HomepagePage {
         this.user=this.navParams.get('user');
         console.log(this.user);
         this.pub.text='';
-        this.http.get('https://redly.pythonanywhere.com/apirest/chatSend/')
-                .map(res => res.json()).subscribe(data => {
-                    console.log(data);
-                    this.posts = data;
-                    let x = this.posts.length;
-                    this.lasid = data[x-1]['id'];
-                    this.posts = this.posts.reverse();
-                    this.getPub();
-                });
+        this.http.get('http://127.0.0.1:8000/apirest/getposts/')
+            .map(res => res.json()).subscribe(data => {
+                // console.log(data.u);
+                // console.log(data.u[0][0]);
+                this.posts = data.u;
+                this.lasid = data.u[0][0];
+                this.getPub();
+            });
 
     }
     upfile($event){
@@ -55,17 +54,21 @@ export class HomepagePage {
         return new Promise(resolve => setTimeout(resolve, ms));
     }
     getPub(){
-        this.lasid++;
         // console.log(this.lasid);
-        this.http.get('https://redly.pythonanywhere.com/apirest/chatSend/'+this.lasid)
+        this.http.get('http://127.0.0.1:8000/apirest/getposts/'+this.lasid)
                 .map(res => res.json())
                     .subscribe(data => {
-                        this.posts.splice(0,0,data);
+                        // console.log(data.u);
 
+                        if (data.u.length>0){
+                            // console.log(data.u.length);
+
+                            this.posts.splice(0,0,data.u[0]);
+                            this.lasid=data.u[0][0];
+                        }
                     },
                     error=>{
                         // console.log(error);
-                        this.lasid--;
                     });
         setTimeout(()=>{
             this.getPub();
@@ -86,14 +89,10 @@ export class HomepagePage {
         // });
         // let headers = new Headers();
         // headers.append('Content-Type', 'application/json');
-        this.http.post("https://redly.pythonanywhere.com/apirest/chatSend/",myData)
+        console.log(myData);
+        this.http.post("http://127.0.0.1:8000/apirest/postposts/",myData)
         .subscribe(data => {
-            if(data['_body'] != '\n'){
-                this.getPub();
-            }
-            else{
-                console.log(data);
-            }
+            this.getPub();
         },
         error => {
             console.log(error);

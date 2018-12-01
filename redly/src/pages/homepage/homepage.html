@@ -31,13 +31,14 @@
     <br>
     <ion-card *ngFor="let post of posts">
         <ion-card-header>
-            <b>{{post.nome}}</b>
+            <b>{{post[1]}}</b>
+
         </ion-card-header>
 
-        <img src="{{post.img}}" *ngIf="post.img" width="400" height="300"/>
-        <ion-card-content>
-            {{post.text}}<br>
-            <img [src]>
+        <img src="http://127.0.0.1:8000{{post[2]}}" *ngIf="post[2]" width="400" height="300"/>
+        <!-- <img [src]="http://127.0.0.1:8000{{post[2]}}" *ngIf="post.img" width="400" height="300"/> -->
+        <ion-card-content *ngIf="post[3] != 'null' || post[3] != 'null'">
+            {{post[3]}}<br>
         </ion-card-content>
 
     </ion-card>
